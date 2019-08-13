@@ -1,0 +1,25 @@
+#__nuxt,
+#__layout {
+  height: 100%;
+}
+
+* {
+	box-sizing: border-box;
+}
+html,
+.fmm {
+  height: 100%;
+}
+body{
+  font-family: 'PingFang SC', 'Lantinghei SC', 'Helvetica Neue', 'Helvetica',
+    'Arial', 'Microsoft YaHei', 'STHeitiSC-Light', 'WenQuanYi Micro Hei',
+    'sans-serif';
+  min-height: 100%;
+  color: #333;
+  background-color: #f5f5f5 !important;
+}
+::placeholder{
+  font-family: 'PingFang SC', 'Lantinghei SC', 'Helvetica Neue', 'Helvetica',
+    'Arial', 'Microsoft YaHei', 'STHeitiSC-Light', 'WenQuanYi Micro Hei',
+    'sans-serif';
+}

@@ -1,0 +1,27 @@
+@mixin flex-s-r {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+};
+@mixin flex-e-r {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center
+};
+@mixin flex-c-r {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+};
+@mixin flex-c-c {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+};
+@mixin whole-fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}

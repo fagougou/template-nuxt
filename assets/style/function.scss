@@ -1,0 +1,13 @@
+$viewport: 750px;
+
+@function base-url-m($fileName) {
+  @return 'https://static.famaomao.com/famaomao/homepage_mobile/images/' + $fileName
+};
+
+@function base-url-d($fileName) {
+  @return 'https://static.famaomao.com/famaomao/homepage_pc/' + $fileName
+};
+
+@function p2v($px) {
+  @return $px / ($viewport / 100vw)
+};
