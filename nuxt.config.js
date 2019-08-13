@@ -33,6 +33,12 @@ module.exports = {
     '@/assets/style/reset.css',
     '@/assets/style/index.css'
   ],
+  router: {
+    middleware: [
+      'checkUA',
+      'checkEnv'
+    ]
+  },
   /*
   ** Plugins to load before mounting the App
   */
@@ -74,7 +80,7 @@ module.exports = {
      */
     styleResources: {
       scss: [
-        'assets/style/index.scss'
+        '@/assets/style/index.scss'
       ]
     }
   }

@@ -1,5 +1,7 @@
 <template>
-  <div class="container" />
+  <div class="container">
+    <pre>{{ $store.state }}</pre>
+  </div>
 </template>
 
 <script>

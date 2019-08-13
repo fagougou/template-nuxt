@@ -10,8 +10,7 @@ async function start () {
 
   // Use Nuxt as middleware in production
   if (isProd) {
-    const nuxtConfig = require('../nuxt.config.js/index.js')
-    const nuxt = new Nuxt(nuxtConfig)
+    const nuxt = new Nuxt(config)
 
     await nuxt.ready()
     app.use(nuxt.render)
