@@ -1,25 +1,29 @@
 <template lang="pug">
-  header.f-header
-    .f-header-inner
+  div
+    header
       nuxt-link(to="/")
-        img.f-header-logo(:src="logo")
-      nav.f-header-nav
-        ul
-          li(
-            v-for="routeItem in $options.routes"
-            :key="routeItem.title")
-            nuxt-link(:to="routeItem.route") {{ routeItem.title }}
+        img(src="https://static.famaomao.com/static/homepage_pc/images/logo.png")
+      nav(@click="navShow=true")
+        img(src="@/assets/icon/menu.png")
+    NavMenu(
+      :show.sync="navShow"
+      :navList="$options.navList"
+    )
 </template>
 <script>
+import NavMenu from '@/components/common/TheNav-m'
+
 export default {
-  name: 'FHead',
-  props: {
-    logo: {
-      type: String,
-      default: 'https://static.famaomao.com/static/homepage_pc/images/logo.png'
+  name: 'Header',
+  components: {
+    NavMenu
+  },
+  data () {
+    return {
+      navShow: false
     }
   },
-  routes: [
+  navList: [
     {
       title: '页面一',
       route: '/'
@@ -32,31 +36,20 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-.f-header {
+header {
   width: 100%;
   height: p2v(92px);
   background-color: #FFF;
   border-bottom: 1px solid #EEE;
-  .f-header-inner {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 90%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: p2v(10px) p2v(20px);
+  a, img {
     height: 100%;
-    padding: p2v(10px) 0;
-    margin: 0 auto;
-    a {
-      height: 100%;
-    }
-    img {
-      height: 100%;
-    }
-    li {
-      display: inline-block;
-    }
-    li + li {
-      margin-left: p2v(40px);
-    }
+  }
+  nav {
+    height: 80%;
   }
 }
 </style>

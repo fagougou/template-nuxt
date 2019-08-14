@@ -12,7 +12,7 @@
 </template>
 <script>
 export default {
-  name: 'FHead',
+  name: 'Header',
   props: {
     logo: {
       type: String,

@@ -14,7 +14,7 @@
 </template>
 <script>
 export default {
-  name: 'FFooter',
+  name: 'Footer',
   routes: [
     {
       title: '页面一',
