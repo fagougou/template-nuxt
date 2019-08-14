@@ -19,7 +19,7 @@
         i.f-nav-arrow
       button.f-nav-button(
         v-if="!$store.state.userId"
-        @click="$router.push('/login')") 立即登录
+        @click="login") 立即登录
     .f-nav-mask(v-show="show" key="mask" @click="$emit('update:show', false)")
 </template>
 
@@ -34,6 +34,12 @@ export default {
     navList: {
       type: Array,
       default: () => []
+    }
+  },
+  methods: {
+    login () {
+      this.$router.push('/login')
+      this.$emit('update:show', false)
     }
   }
 }
