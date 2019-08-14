@@ -1,13 +1,26 @@
 <template lang="pug">
   .wrap
-    component(:is="Header")
+    component(
+      :is="Header"
+      @login="loginShow=true")
     nuxt.container
     component(:is="Footer")
+    Login(v-if="loginShow" @on-close="loginShow=false")
 </template>
 
 <script>
+import Login from '@/components/Login'
+
 export default {
   name: 'DefaultLayout',
+  components: {
+    Login
+  },
+  data () {
+    return {
+      loginShow: false
+    }
+  },
   computed: {
     errMsg () {
       return this.$store.state.errMsg

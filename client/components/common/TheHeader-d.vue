@@ -9,6 +9,7 @@
             v-for="routeItem in $options.routes"
             :key="routeItem.title")
             nuxt-link(:to="routeItem.route") {{ routeItem.title }}
+          button.f-header-login(@click="$emit('login')") 登录
 </template>
 <script>
 export default {
@@ -60,6 +61,17 @@ export default {
     }
     li + li {
       margin-left: 50px;
+    }
+    .f-header-login {
+      margin-left: 50px;
+      height: 30px;
+      border: none;
+      border-radius: 2px;
+      background-color: #ff9800;
+      color: #fff;
+      outline: none;
+      padding: 0 20px;
+      cursor: pointer;
     }
   }
 }

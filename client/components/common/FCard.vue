@@ -7,7 +7,7 @@
         p {{ title }}
         span {{ text }}
         button(
-          v-if="isButtonShow" 
+          v-if="isButtonShow"
           @click="$emit('on-success')") {{ buttonText }}
 </template>
 

@@ -1,24 +1,26 @@
 <template lang="pug">
-  transition-group(name='slide-right')
-    nav.nav-container(v-show='show' key='nav')
-      .fmm-header-nav-close
-        img.fmm-header-nav-icon.fmm-header-nav-icon-close(
-          src='http://web-assets-1254426977.file.myqcloud.com/famaomao/homepage_mobile/images/v1.0.0/v1.0.0.nav-close.png'
-          alt='侧边栏关闭按钮'
-          @click="$emit('update:show', false)"
-        )
+  transition-group(name="navbar-slide")
+    nav.f-nav(v-show="show" key="nav")
+      .f-nav-close
+        img(
+          src="http://web-assets-1254426977.file.myqcloud.com/famaomao/homepage_mobile/images/v1.0.0/v1.0.0.nav-close.png"
+          alt="侧边栏关闭按钮"
+          @click="$emit('update:show', false)")
       nuxt-link(
-        v-for='(item, index) in navList'
-        :key='index'
-        :to='item.route'
-        :class="item.active === true ? 'fmm-header-nav-item-active' : 'fmm-header-nav-item'"
-        @click="$emit('update:show', false)"
-      )
-        img.fmm-header-nav-icon(:src='item.active === true ? item.activeSrc : item.src' :alt='item.alt')
+        v-for="(item, index) in navList"
+        :key="index"
+        :to="item.route"
+        :class="item.active ? 'f-nav-route-active' : 'f-nav-route'"
+        @click.native="$emit('update:show', false)")
+        img.f-nav-icon(
+          :src="item.active ? item.activeSrc : item.src"
+          :alt="item.alt")
         span {{ item.title }}
-        i.fmm-icon.fmm-icon--arrowright.fmm-header-nav-arrow
-      button.fmm-header-nav-button(v-if='!$store.state.userId' name='侧边栏-立即登录' @click="$router.push('/login')")
-        | &#x7ACB;&#x5373;&#x767B;&#x5F55;
+        i.f-nav-arrow
+      button.f-nav-button(
+        v-if="!$store.state.userId"
+        @click="login") 立即登录
+    .f-nav-mask(v-show="show" key="mask" @click="$emit('update:show', false)")
 </template>
 
 <script>
@@ -33,35 +35,38 @@ export default {
       type: Array,
       default: () => []
     }
+  },
+  methods: {
+    login () {
+      this.$router.push('/login')
+      this.$emit('update:show', false)
+    }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-.nav-container {
+.f-nav {
   position: fixed;
   top: 0;
   right: 0;
   bottom: 0;
   width: 65.6vw;
   height: 100%;
-  z-index: 1200;
+  z-index: 20;
   text-align: center;
-  background-color: rgba(29, 30, 31, 0.98);
-  .fmm-header-nav-close {
+  background-color: rgba(29, 30, 31, .98);
+  .f-nav-close {
+    @include flex-e-r;
     padding: 5px 4vw 0 8vw;
     box-sizing: border-box;
     height: 12.5vw;
     text-align: right;
-  }
-  .fmm-header-nav-item {
-    span {
-      display: inline-block;
-      color: #fff;
-      margin-left: 4vw;
+    img {
+      width: 4.86vw;
     }
   }
-  .fmm-header-nav-item, .fmm-header-nav-item-active {
+  .f-nav-route, .f-nav-route-active {
     display: flex;
     position: relative;
     align-items: center;
@@ -71,9 +76,28 @@ export default {
     font-size: 16px;
     color: #ffffff;
     line-height: 16px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05)
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    .f-nav-icon {
+      width: 5.86vw;
+    }
+    .f-nav-arrow {
+      position: absolute;
+      display: inline-block;
+      right: 5.3vw;
+      vertical-align: top;
+      height: 3.125vw;
+      width: 1.71vw;
+      background: url(https://static.famaomao.com/static/homepage_mobile/images/v2.4_arrow_left.png) no-repeat;
+      background-size: contain;
+    }
   }
-  .fmm-header-nav-item-active {
+  .f-nav-route {
+    span {
+      display: inline-block;
+      margin-left: 4vw;
+    }
+  }
+  .f-nav-route-active {
     span {
       display: inline-block;
       color: #FE8E21;
@@ -88,20 +112,7 @@ export default {
       background-color: #FE8E21;
     }
   }
-  .fmm-header-nav-icon {
-    width: 5.86vw;
-  }
-  .fmm-header-nav-icon-close {
-    width: 4.86vw;
-  }
-  .fmm-header-nav-arrow {
-    position: absolute;
-    right: 5.3vw;
-    width: 1.46vw;
-    height: 2.6vw;
-    text-align: right;
-  }
-  .fmm-header-nav-button {
+  .f-nav-button {
     width: 58.6vw;
     height: 40px;
     border: 1px solid #FE8E21;
@@ -113,25 +124,23 @@ export default {
     margin: auto;
     margin-top: 15px;
   }
-  .fmm-header-nav {
-    width: 100%;
-    height: 100%;
-    background-color: #fff;
-  }
-  .fmm-icon--arrowright {
-    display: inline-block;
-    vertical-align: top;
-    height: 3.125vw;
-    width: 1.71vw;
-  }
 }
-.nav-mask {
+.f-nav-mask {
   position: fixed;
   left: 0;
   top: 0;
   bottom: 0;
-  z-index: 1000;
+  z-index: 15;
   width: 100vw;
   height: 100%;
+}
+.navbar-slide-enter-active,
+.navbar-slide-leave-active {
+  transition: all 0.3s;
+}
+.navbar-slide-enter,
+.navbar-slide-leave-to {
+  opacity: 0;
+  transform: translateX(20px);
 }
 </style>
