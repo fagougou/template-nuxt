@@ -1,3 +1,4 @@
+const path = require('path')
 
 module.exports = {
   mode: 'universal',
@@ -15,10 +16,15 @@ module.exports = {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
   },
+  srcDir: path.resolve(__dirname, 'client'),
+  server: {
+    port: 8080,
+    host: '0.0.0.0'
+  },
   /*
   ** Customize the progress-bar color
   */
-  loading: { color: '#fff' },
+  loading: { color: '#FF9800' },
   /*
   ** Global CSS
   */
@@ -27,6 +33,12 @@ module.exports = {
     '@/assets/style/reset.css',
     '@/assets/style/index.css'
   ],
+  router: {
+    middleware: [
+      'checkUA',
+      'checkEnv'
+    ]
+  },
   /*
   ** Plugins to load before mounting the App
   */
@@ -68,7 +80,7 @@ module.exports = {
      */
     styleResources: {
       scss: [
-        'assets/style/index.scss'
+        '@/assets/style/index.scss'
       ]
     }
   }
