@@ -5,7 +5,7 @@
       @login="loginShow=true")
     nuxt.container
     component(:is="Footer")
-    Login(v-if="loginShow" @on-close="loginShow=false")
+    Login(:loginShow.sync="loginShow")
 </template>
 
 <script>

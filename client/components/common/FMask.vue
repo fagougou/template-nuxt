@@ -1,5 +1,5 @@
 <template lang="pug">
-  .f-mask(v-if="isMaskShow" @click="toggle")
+  .f-mask(v-if="isMaskShow" @click.self="$emit('on-close')")
     slot
 </template>
 <script>
@@ -8,8 +8,7 @@ export default {
   props: {
     isMaskShow: {
       type: Boolean,
-      default: false,
-      required: true
+      default: false
     }
   },
   watch: {
@@ -19,11 +18,6 @@ export default {
           ? document.getElementsByTagName('body')[0].style.overflow = 'hidden'
           : document.getElementsByTagName('body')[0].style.overflow = 'auto'
       }
-    }
-  },
-  methods: {
-    toggle () {
-      this.$emit('on-close')
     }
   }
 }

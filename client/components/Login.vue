@@ -1,6 +1,6 @@
 <template lang="pug">
-  FMask(:isMaskShow="true" @on-close="$emit('on-close')")
-    FCard(@on-close="$emit('on-close')")
+  FMask(:isMaskShow="loginShow" @on-close="$emit('update:loginShow')")
+    FCard(@on-close="$emit('update:loginShow')")
       template(#content)
         p.title 登录
         form.form
@@ -28,6 +28,12 @@ export default {
     FMask,
     FCard,
     VerificationCode
+  },
+  props: {
+    loginShow: {
+      type: Boolean,
+      default: false
+    }
   },
   data () {
     return {
